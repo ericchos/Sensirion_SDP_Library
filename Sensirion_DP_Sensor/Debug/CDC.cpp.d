@@ -1,5 +1,5 @@
  \
- C:\Users\Eric\AppData\Local\VMicro\Arduino\Builds\SensirionSDP600\nano_atmega328\CDC.cpp.o:  \
+ C:\Users\Eric\AppData\Local\VMicro\Arduino\Builds\Sensirion_DP_Sensor\nano_atmega328\CDC.cpp.o:  \
  C:\arduino-1.5.6-r2\hardware\arduino\avr\cores\arduino\CDC.cpp \
   C:\arduino-1.5.6-r2\hardware\arduino\avr\cores\arduino\/Platform.h \
   C:\arduino-1.5.6-r2\hardware\arduino\avr\cores\arduino\/Arduino.h \

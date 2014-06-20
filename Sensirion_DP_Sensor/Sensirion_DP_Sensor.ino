@@ -5,8 +5,9 @@
 void setup() 
 {
   Serial.begin(115200);
-  Serial.print(sizeof(int));
   Serial.print("Sensor Address: "); Serial.println(SDP_600_ADDR_R);
+  
+  /* Initialize I2C hardware for the sensor */
   twiInit();
   
   Serial.print("Flow Reading (dec) "); Serial.println("bin");

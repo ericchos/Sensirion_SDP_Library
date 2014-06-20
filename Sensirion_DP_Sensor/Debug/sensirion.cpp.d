@@ -1,8 +1,8 @@
  \
- C:\Users\Eric\AppData\Local\VMicro\Arduino\Builds\SensirionSDP600\nano_atmega328\sensirion.cpp.o:  \
- C:\Users\Eric\AppData\Local\VMicro\Arduino\Builds\SensirionSDP600\nano_atmega328\sensirion.cpp \
-  C:\Users\Eric\AppData\Local\VMicro\Arduino\Builds\SensirionSDP600\nano_atmega328\/sensirion.h \
-  C:\Users\Eric\AppData\Local\VMicro\Arduino\Builds\SensirionSDP600\nano_atmega328\/twi.h \
+ C:\Users\Eric\AppData\Local\VMicro\Arduino\Builds\Sensirion_DP_Sensor\nano_atmega328\sensirion.cpp.o:  \
+ C:\Users\Eric\AppData\Local\VMicro\Arduino\Builds\Sensirion_DP_Sensor\nano_atmega328\sensirion.cpp \
+  C:\Users\Eric\AppData\Local\VMicro\Arduino\Builds\Sensirion_DP_Sensor\nano_atmega328\/sensirion.h \
+  C:\Users\Eric\AppData\Local\VMicro\Arduino\Builds\Sensirion_DP_Sensor\nano_atmega328\/twi.h \
   C:\arduino-1.5.6-r2\hardware\arduino\avr\cores\arduino/Arduino.h \
   C:\arduino-1.5.6-r2\hardware\arduino\avr\cores\arduino/binary.h \
   C:\arduino-1.5.6-r2\hardware\arduino\avr\cores\arduino/WCharacter.h \
