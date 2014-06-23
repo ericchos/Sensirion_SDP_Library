@@ -43,7 +43,6 @@ void twiStart()
   while(!(TWCR & (1<<TWINT)));
   
   /* Check if Start condition is transmitted */
-  
 }
 
 void twiStop()
@@ -103,11 +102,9 @@ uint8_t twiReadNACK()
 }
 
 uint8_t twiGetStatus()
-{
-  uint8_t twiStatus;
-  
+{  
   /* mask status */
-  twiStatus = TWSR & 0xF8;
+  uint8_t twiStatus = TWSR & 0xF8;
   
   return twiStatus;
 }
@@ -115,4 +112,18 @@ uint8_t twiGetStatus()
 void twiError()
 {
   twiStop();
+}
+
+uint8_t twiGetData()
+{
+  /* */
+  TWCR = (1<<TWINT)|(1<<TWEA);
+  
+  /* Wait for transmission to complete */
+  while(!(TWCR & (1<<TWINT)));
+  
+  /* Load byte TWDR register value into twiByte */
+  uint8_t twiByte = TWDR;
+  
+  return twiByte;	
 }

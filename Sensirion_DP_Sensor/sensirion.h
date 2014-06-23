@@ -24,6 +24,9 @@ void sensirion_reset();
 void sensirion_init();
 
 /* Reads the digital reading from the sensirion sensor */
-int16_t sensirion_read();
+uint16_t sensirion_read();
+
+/* Convert the raw sensor reading to actual value */
+float get_dp(int rawSensorValue);
 
 #endif

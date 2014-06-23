@@ -43,7 +43,7 @@ void printLSB()
   Serial.print(", LSB:"); Serial.print(data, BIN);	
 }
 
-int16_t sensirion_read()
+uint16_t sensirion_read()
 { 
   uint8_t status;
   
@@ -56,7 +56,6 @@ int16_t sensirion_read()
   twiWrite(SDP_600_ADDR_W);
   
   /* Get Acknowledge bit */
-  //while(!twiReadACK());
   status = TWSR;
   Serial.print(", 0x"); Serial.print(status, HEX);  
   
@@ -84,27 +83,24 @@ int16_t sensirion_read()
   Serial.print(", 0x"); Serial.print(status, HEX);
   
   /* Get MSB of sensor reading */
-  unsigned char flowReadingMSB = TWDR;
+  char flowReadingMSB = TWDR;
   Serial.print(", MSB: "); Serial.print(flowReadingMSB, BIN);
   
   /* Send an acknowledge bit */
-  //while(!twiReadACK());
   twiWrite(0x01);
-  //while(!(TWCR & (1<<TWINT)));  
   status = TWSR;
   Serial.print(", 0x"); Serial.print(status, HEX);
   
   /* Get LSB of sensor reading */
-  unsigned char flowReadingLSB = TWDR;
+  uint8_t flowReadingLSB = TWDR;
   Serial.print(", LSB: "); Serial.print(flowReadingLSB, BIN);
   
   /* Send an acknowledge bit */
-  twiWrite(0x01);
-  //while(!(TWCR & (1<<TWINT)));
+  
   status = TWSR;
   Serial.print(", 0x"); Serial.print(status, HEX);
   
-  int16_t flowReading = ((unsigned int)(flowReadingMSB << 8))|((unsigned char)flowReadingLSB);
+  uint16_t flowReading = ((uint16_t)(flowReadingMSB << 8))|((uint8_t)flowReadingLSB);
   
   /* Check Byte */
   while(!(TWCR & (1<<TWINT)));
@@ -113,7 +109,6 @@ int16_t sensirion_read()
     
   /* Send an acknowledge bit */
   twiWrite(0x01);
-  //while(!(TWCR & (1<<TWINT)));
   status = TWSR;
   Serial.print(", 0x"); Serial.println(status, HEX);
     
