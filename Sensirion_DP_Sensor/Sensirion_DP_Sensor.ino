@@ -17,7 +17,8 @@ void loop()
 {  
   int rawVal = sensirion_read();
   float sensorRead = get_dp(rawVal);
-  Serial.print(rawVal,  DEC); Serial.print(", "); Serial.println(rawVal, BIN);
-  Serial.print("Actual Val: "); Serial.println(sensorRead);
-  delay(1000);
+  //Serial.print(rawVal,  DEC); Serial.print(", "); Serial.println(rawVal, BIN);
+  Serial.print("Raw: "); Serial.print(rawVal);
+  Serial.print(" Actual Val: "); Serial.println(sensorRead);
+  delay(500);
 }

@@ -41,8 +41,15 @@ void twiStart()
   
   /* Wait until START condition is transmitted */
   while(!(TWCR & (1<<TWINT)));
-  
-  /* Check if Start condition is transmitted */
+}
+
+void twiRepeatStart()
+{
+	/* Generates START signal */
+	TWCR = (1<<TWINT)|(1<<TWSTA)|(1<<TWEN);
+	
+	/* Wait until START condition is transmitted */
+	while(!(TWCR & (1<<TWINT)));
 }
 
 void twiStop()
@@ -64,8 +71,6 @@ void twiWriteAddr(uint8_t u8address)
   
   /* Wait for command to go through */
   while(!(TWCR & (1<<TWINT)));
-  
-  /* Check if address is sent & ACK bit received */
 }
 
 void twiWrite(uint8_t u8data)
@@ -78,27 +83,6 @@ void twiWrite(uint8_t u8data)
   
   /* Wait for transmission to complete */
   while(!(TWCR & (1<<TWINT)));
-  
-  /* Check if data is sent & ACK bit received */
-  
-}
-
-uint8_t twiReadACK()
-{
-  TWCR = (1<<TWINT)|(1<<TWEN)|(1<<TWEA);
-  
-  while(!(TWCR & (1<<TWINT)));
-  
-  return TWDR;
-}
-
-uint8_t twiReadNACK()
-{
-  TWCR = (1<<TWINT)|(1<<TWEN);
-  
-  while(!(TWCR & (1<<TWINT)));
-  
-  return TWDR;
 }
 
 uint8_t twiGetStatus()
@@ -111,19 +95,19 @@ uint8_t twiGetStatus()
 
 void twiError()
 {
-  twiStop();
+  Serial.println("Error");
 }
 
 uint8_t twiGetData()
 {
   /* */
-  TWCR = (1<<TWINT)|(1<<TWEA);
-  
+  TWCR = (1<<TWEA)|(1<<TWINT)|(1<<TWEN);
+
   /* Wait for transmission to complete */
   while(!(TWCR & (1<<TWINT)));
-  
+
   /* Load byte TWDR register value into twiByte */
-  uint8_t twiByte = TWDR;
+  uint8_t twiByte = TWDR;  
   
   return twiByte;	
 }

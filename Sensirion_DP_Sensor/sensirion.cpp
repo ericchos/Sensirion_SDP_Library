@@ -31,86 +31,61 @@ void printTWSRHex()
 
 void printMSB()
 {
-  uint8_t data;
+  uint8_t data, status;
+  status = TWSR;  
   data = TWDR;
+  Serial.print(", 0x"); Serial.print(status, HEX);  
   Serial.print(", MSB:"); Serial.print(data, BIN);  	
 }
 
 void printLSB()
 {
-  uint8_t data;
+  uint8_t data, status;
+  status = TWSR;
   data = TWDR;
+  Serial.print(", 0x"); Serial.print(status, HEX);
   Serial.print(", LSB:"); Serial.print(data, BIN);	
 }
 
 uint16_t sensirion_read()
 { 
-  uint8_t status;
-  
   /* Send START condition & wait until it goes through */
   twiStart();
-  status = TWSR; 
-  Serial.print("0x"); Serial.print(status, HEX);
+  //printTWSRHex();
   
-  /* Write the sensor address to write command */
+  /* Write the sensor address + write bit & receive ACK */
   twiWrite(SDP_600_ADDR_W);
+  //printTWSRHex();
   
-  /* Get Acknowledge bit */
-  status = TWSR;
-  Serial.print(", 0x"); Serial.print(status, HEX);  
-  
-  /* Send command to sensor */
+  /* Send command to sensor & receive ACK*/
   twiWrite(SDP_600_READ);
+  //printTWSRHex();
+    
+  /* Send repeated START signal */
+  twiRepeatStart();
+  //printTWSRHex();
 
-  /* Get Acknowledge bit */
-  status = TWSR;
-  Serial.print(", 0x"); Serial.print(status, HEX);
     
-  /* Send START signal */
-  twiStart();
-  status = TWSR;
-  Serial.print(", 0x"); Serial.print(status, HEX);
-    
-  /* Write sensor address to read */
+  /* Write sensor address + read bit & receive ACK */
   twiWrite(SDP_600_ADDR_R);
-  
-  /* Get acknowledge bit */
-  status = TWSR;
-  Serial.print(", 0x"); Serial.print(status, HEX);  
+  //printTWSRHex();
   
   /* Hold Master */
-  status = TWSR;
-  Serial.print(", 0x"); Serial.print(status, HEX);
+  	
   
-  /* Get MSB of sensor reading */
-  char flowReadingMSB = TWDR;
-  Serial.print(", MSB: "); Serial.print(flowReadingMSB, BIN);
+  /* Get MSB of sensor reading & send ACK */
+  uint8_t msb = twiGetData();
+  //printMSB();
   
-  /* Send an acknowledge bit */
-  twiWrite(0x01);
-  status = TWSR;
-  Serial.print(", 0x"); Serial.print(status, HEX);
+  /* Get LSB of sensor reading & send ACK */
+  uint8_t lsb = twiGetData();
+  //printLSB();
   
-  /* Get LSB of sensor reading */
-  uint8_t flowReadingLSB = TWDR;
-  Serial.print(", LSB: "); Serial.print(flowReadingLSB, BIN);
+  uint16_t flowReading = ((uint16_t)(msb << 8))|(lsb);
   
-  /* Send an acknowledge bit */
-  
-  status = TWSR;
-  Serial.print(", 0x"); Serial.print(status, HEX);
-  
-  uint16_t flowReading = ((uint16_t)(flowReadingMSB << 8))|((uint8_t)flowReadingLSB);
-  
-  /* Check Byte */
-  while(!(TWCR & (1<<TWINT)));
-  status = TWSR;
-  Serial.print(", 0x"); Serial.print(status, HEX);
-    
-  /* Send an acknowledge bit */
-  twiWrite(0x01);
-  status = TWSR;
-  Serial.print(", 0x"); Serial.println(status, HEX);
+  /* Check Byte & send ACK */
+  uint8_t checkByte = twiGetData();
+  //Serial.print(" Check Byte: "); Serial.println(checkByte);
     
   /* Stop I2C */
   twiStop();

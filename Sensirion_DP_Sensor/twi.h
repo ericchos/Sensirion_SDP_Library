@@ -3,6 +3,7 @@
 
 #include <avr/io.h>
 #include <Arduino.h>
+
 /* Macro for Error Handling */
 #define ERROR						twiError()
 
@@ -34,16 +35,16 @@ void twiInit();
 
 void twiStart();
 
+void twiRepeatStart();
+
 void twiStop();
 
 void twiWrite(uint8_t u8data);
 
-uint8_t twiReadACK();
-
-uint8_t twiReadNACK();
-
 uint8_t twiGetStatus();
 
 void twiError();
+
+uint8_t twiGetData();
 
 #endif TWI_H_
