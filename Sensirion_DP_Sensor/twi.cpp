@@ -107,7 +107,7 @@ uint8_t twiGetData()
   while(!(TWCR & (1<<TWINT)));
 
   /* Load byte TWDR register value into twiByte */
-  uint8_t twiByte = TWDR;  
+  //uint8_t twiByte = TWDR;  
   
-  return twiByte;	
+  return TWDR;	
 }

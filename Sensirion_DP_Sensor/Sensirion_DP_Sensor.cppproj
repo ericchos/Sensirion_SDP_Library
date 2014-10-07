@@ -218,9 +218,6 @@
     <Folder Include="Visual Micro\" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="port.h">
-      <SubType>compile</SubType>
-    </Compile>
     <Compile Include="sensirion.cpp">
       <SubType>compile</SubType>
     </Compile>

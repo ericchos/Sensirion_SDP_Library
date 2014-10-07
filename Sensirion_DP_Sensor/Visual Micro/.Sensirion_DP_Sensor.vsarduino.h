@@ -23,7 +23,6 @@ extern "C" void __cxa_pure_virtual() {;}
 #include "C:\arduino-1.5.6-r2\hardware\arduino\avr\variants\eightanaloginputs\pins_arduino.h" 
 #include "C:\arduino-1.5.6-r2\hardware\arduino\avr\cores\arduino\arduino.h"
 #include "C:\Users\Eric\Documents\GitHub\Sensirion-DP-Sensor\Sensirion_DP_Sensor\Sensirion_DP_Sensor.ino"
-#include "C:\Users\Eric\Documents\GitHub\Sensirion-DP-Sensor\Sensirion_DP_Sensor\port.h"
 #include "C:\Users\Eric\Documents\GitHub\Sensirion-DP-Sensor\Sensirion_DP_Sensor\sensirion.cpp"
 #include "C:\Users\Eric\Documents\GitHub\Sensirion-DP-Sensor\Sensirion_DP_Sensor\sensirion.h"
 #include "C:\Users\Eric\Documents\GitHub\Sensirion-DP-Sensor\Sensirion_DP_Sensor\twi.cpp"

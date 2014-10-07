@@ -24,9 +24,12 @@ void sensirion_reset();
 void sensirion_init();
 
 /* Reads the digital reading from the sensirion sensor */
-uint16_t sensirion_read();
+int16_t sensirion_read();
 
-/* Convert the raw sensor reading to actual value */
+/* Convert the raw sensor reading to differential pressure */
 float get_dp(int rawSensorValue);
+
+/* Convert the raw sensor reading to flow */
+float get_flow(int rawSensorValue);
 
 #endif

@@ -47,27 +47,34 @@ void printLSB()
   Serial.print(", LSB:"); Serial.print(data, BIN);	
 }
 
-uint16_t sensirion_read()
+int16_t sensirion_read()
 { 
+  uint8_t statusCode[7];
+  
   /* Send START condition & wait until it goes through */
   twiStart();
+  statusCode[0] = TWSR;
   //printTWSRHex();
   
   /* Write the sensor address + write bit & receive ACK */
   twiWrite(SDP_600_ADDR_W);
+  statusCode[1] = TWSR;
   //printTWSRHex();
   
   /* Send command to sensor & receive ACK*/
   twiWrite(SDP_600_READ);
+  statusCode[2] = TWSR;
   //printTWSRHex();
     
   /* Send repeated START signal */
   twiRepeatStart();
+  statusCode[3] =  TWSR;
   //printTWSRHex();
 
     
   /* Write sensor address + read bit & receive ACK */
   twiWrite(SDP_600_ADDR_R);
+  statusCode[4] = TWSR;
   //printTWSRHex();
   
   /* Hold Master */
@@ -75,10 +82,12 @@ uint16_t sensirion_read()
   
   /* Get MSB of sensor reading & send ACK */
   uint8_t msb = twiGetData();
+  statusCode[5] = TWSR;
   //printMSB();
   
   /* Get LSB of sensor reading & send ACK */
   uint8_t lsb = twiGetData();
+  statusCode[6] = TWSR; 
   //printLSB();
   
   uint16_t flowReading = ((uint16_t)(msb << 8))|(lsb);
@@ -96,4 +105,9 @@ uint16_t sensirion_read()
 float get_dp(int rawSensorValue)
 {
   return rawSensorValue/60;
+}
+
+float get_flow(int rawSensorValue)
+{
+  return rawSensorValue/327;
 }
