@@ -10,16 +10,16 @@ https://www.sensirion.com/en/flow-sensors/differential-pressure-sensors/digital-
 Also, a direct link to the datasheet can be found here:
 https://www.mouser.com/datasheet/2/682/Sensirion_Differential_Pressure_Sensors_SDP600Seri-1109144.pdf
 
-This is an Arduino Library to use the Sensirion SDP series sensors. 
+##This is an Arduino Library to use the Sensirion SDP series sensors. 
 
-Sensirion SDP sensors uses i2c and runs off 3.3V so be sure to use a 5V to 3.3V level shifter.
+Sensirion SDP sensors uses I2C and runs off 3.3V so be sure to use a 5V to 3.3V level shifter.
 
 To use:
-1. Clone this repository to your Arduino/libraries folder and restart arduino to use.
-2. To include the library to your sketch add #include <sensirion_sdp.h> to the top of your sketch
+1. Clone this repository to your **Arduino/libraries** folder and restart arduino to use.
+2. To include the library to your sketch add `#include <sensirion_sdp.h>` to the top of your sketch
 
 Features:
-1. Measure differentail pressure in Pa for the SDP500 and SDP600.
+1. Measure differentail pressure in *Pa* for the SDP500 and SDP600.
 
 Future Work:
 1. Add capability for Sensirion's new SDP800 series sensors.
