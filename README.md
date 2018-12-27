@@ -10,7 +10,7 @@ https://www.sensirion.com/en/flow-sensors/differential-pressure-sensors/digital-
 Also, a direct link to the datasheet can be found here:
 https://www.mouser.com/datasheet/2/682/Sensirion_Differential_Pressure_Sensors_SDP600Seri-1109144.pdf
 
-##This is an Arduino Library to use the Sensirion SDP series sensors. 
+## This is an Arduino Library to use the Sensirion SDP series sensors. 
 
 Sensirion SDP sensors uses I2C and runs off 3.3V so be sure to use a 5V to 3.3V level shifter.
 
