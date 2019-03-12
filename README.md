@@ -19,7 +19,7 @@ To use:
 2. To include the library to your sketch add `#include <sensirion_sdp.h>` to the top of your sketch
 
 Features:
-1. Measure differentail pressure in *Pa* for the SDP500 and SDP600.
+1. Measure differential pressure in *Pa* for the SDP500 and SDP600.
 
 Future Work:
 1. Add capability for Sensirion's new SDP800 series sensors.
